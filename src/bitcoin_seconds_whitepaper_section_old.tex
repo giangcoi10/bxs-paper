@@ -1,0 +1,104 @@
+\section{Bitcoin-Seconds: A Time-Valued Measure of Real Economic Utility}
+\label{sec:bitcoin_seconds}
+
+\subsection{Motivation}
+Traditional macroeconomic measures of ``real'' value rely on inflation-adjusted fiat units, whose calibration and
+publication are often politically influenced. In a Bitcoin-denominated economy, the unit of account is immutable,
+timestamped, and globally verifiable. We propose \textbf{Bitcoin-Seconds (BS)}: a continuous, time-based measure of
+individual or organizational economic efficacy that integrates productive Bitcoin activity, inflation-adjusted consumption,
+and wealth accumulation over a lifetime horizon.
+
+Bitcoin-Seconds quantifies \emph{economic vitality in time}, echoing the metaphor of the film \emph{In Time} (2011), where
+lifespan is measured in seconds of purchasing power. Here, the metric expresses how effectively one converts Bitcoin-denominated
+wealth into sustainable, inflation-resilient utility.
+
+\subsection{Definitions and Notation}
+Let $t \in [0,T]$ denote continuous time, measured in seconds. We define the following measurable functions:
+\begin{itemize}
+  \item $A(t)$ --- Expected UTXO (coin) age [seconds] (value-weighted mean age of coins held).
+  \item $W(t)$ --- Bitcoin stock (wealth) [satoshis].
+  \item $Y(t)$ --- Income rate [satoshis per second].
+  \item $R(t)$ --- Retirement income rate [satoshis per second].
+  \item $c(t)$ --- Consumption (spend) rate [satoshis per second].
+  \item $\iota_t$ --- Real inflation rate [per second], derived from the Truflation index.
+  \item $\rho$ --- Discount rate [per second], modeling time preference.
+\end{itemize}
+All functions are assumed bounded, piecewise continuous, and integrable on $[0,T]$.
+
+\subsection{Instantaneous Utility Function}
+At any instant $t$, Bitcoin economic utility is given by
+\begin{equation}
+  u(t) = \alpha A(t)Y(t) + \beta R(t) - \gamma \iota_t c(t),
+  \label{eq:utility}
+\end{equation}
+where $\alpha, \beta, \gamma > 0$ are calibration constants controlling the respective contribution of productive coin-age,
+retirement inflows, and inflation drag. Each term in (\ref{eq:utility}) has units of satoshis per second (sats/s).
+
+\subsection{Discounted Utility and Spending Integrals}
+Define the discounted total utility:
+\begin{equation}
+  U_\rho(T) = \int_{0}^{T} e^{-\rho t} 
+  \big[ \alpha A(t)Y(t) + \beta R(t) - \gamma \iota_t c(t) \big]\,dt,
+  \label{eq:discounted_utility}
+\end{equation}
+and the discounted total consumption:
+\begin{equation}
+  S_\rho(T) = \int_{0}^{T} e^{-\rho t} c(t)\,dt.
+  \label{eq:discounted_spending}
+\end{equation}
+
+\subsection{The Bitcoin-Seconds Index}
+The Bitcoin-Seconds Index is defined as the ratio of discounted productive utility to discounted expenditure:
+\begin{equation}
+  \boxed{
+  BS_\rho(T) = 
+  \frac{
+    \int_{0}^{T} e^{-\rho t}
+      \big[\alpha A(t)Y(t) + \beta R(t) - \gamma \iota_t c(t)\big]\,dt
+  }{
+    \int_{0}^{T} e^{-\rho t}\,c(t)\,dt
+  }}.
+  \label{eq:bitcoin_seconds}
+\end{equation}
+This ratio is dimensionless, scale-invariant, and bounded for $\rho>0$ under finite utility and consumption flows.
+The limit $BS_\rho(\infty)$ exists whenever both integrals converge.
+
+\subsection{Properties}
+\begin{enumerate}
+  \item \textbf{Dimensional Consistency:} All terms have identical units, ensuring $BS_\rho$ is dimensionless.
+  \item \textbf{Scale Invariance:} $BS_\rho(\lambda W, \lambda Y, \lambda R, \lambda c) = BS_\rho(W,Y,R,c)$ for any $\lambda > 0$.
+  \item \textbf{Boundedness:} If $A, Y, R, c, \iota_t$ are bounded, and $\rho > 0$, then $BS_\rho(T)$ is bounded for all finite $T$.
+  \item \textbf{Monotonicity:} $\frac{\partial BS}{\partial A}, \frac{\partial BS}{\partial Y}, \frac{\partial BS}{\partial R} > 0$; $\frac{\partial BS}{\partial \iota}, \frac{\partial BS}{\partial c} < 0$.
+\end{enumerate}
+
+\subsection{Discrete Implementation}
+For discrete time steps $k = 1, \dots, T$, with step size $\Delta t$ and $\delta = e^{-\rho \Delta t}$:
+\begin{equation}
+  BS_\rho(T)
+  = 
+  \frac{
+    \sum_{k=1}^{T} \delta^{k}
+    [\alpha A_k Y_k + \beta R_k - \gamma \iota_k c_k]
+  }{
+    \sum_{k=1}^{T} \delta^{k} c_k
+  }.
+  \label{eq:discrete_BS}
+\end{equation}
+This form is suitable for monthly or daily updates from wallet logs and inflation feeds.
+
+\subsection{Interpretation}
+$BS_\rho > 0$ indicates that productive accumulation exceeds inflation-adjusted consumption; $BS_\rho = 0$ represents
+equilibrium; and $BS_\rho < 0$ indicates a net loss of purchasing power in Bitcoin terms. For communication, $BS_\rho$ can be
+reported as a rate---e.g., ``the entity is generating $0.002$ Bitcoin-Seconds per second.''
+
+\subsection{Data Sources and Calibration}
+The inflation term $\iota_t$ is computed from a transparent, independent source such as the Truflation index:
+\begin{equation}
+  \iota_t = \frac{1}{\Delta t}\ln\!\left(\frac{\mathrm{Truflation}(t)}{\mathrm{Truflation}(t-\Delta t)}\right).
+\end{equation}
+The parameters $\alpha, \beta, \gamma$ may be calibrated so that $BS_\rho \in [-1,1]$ under a chosen baseline.
+
+\subsection{Conclusion}
+Bitcoin-Seconds provides a unified temporal framework to measure economic vitality in a Bitcoin-denominated economy. It
+formalizes the interplay between coin age, productivity, inflation, and consumption into a bounded, invariant, and
+human-readable metric that treats \emph{time itself} as the fundamental unit of economic life.
