@@ -14,5 +14,6 @@ jobs:
       - name: Run tests
         env:
           MOCK_MODE: "true"
+          PYTHONPATH: ${{ github.workspace }}
         run: pytest tests/ -q -v
 
