@@ -12,8 +12,8 @@ import signal
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from code.data_pipeline import pipeline_step
-from code.cli import compute_and_persist
+from code.data_pipeline import pipeline_step  # noqa: E402
+from code.cli import compute_and_persist  # noqa: E402
 
 RUNNING = True
 
