@@ -21,6 +21,9 @@ def test_db():
     conn = sqlite3.connect(path)
     # Create schema
     schema_path = os.path.join(os.path.dirname(__file__), "..", "data", "schema.sql")
+    if not os.path.exists(schema_path):
+        # Try alternative path for CI
+        schema_path = os.path.join("data", "schema.sql")
     with open(schema_path, "r") as f:
         conn.executescript(f.read())
 

@@ -14,5 +14,5 @@ jobs:
       - name: Run tests
         env:
           MOCK_MODE: "true"
-        run: pytest tests/ -q
+        run: pytest tests/ -q -v
 
