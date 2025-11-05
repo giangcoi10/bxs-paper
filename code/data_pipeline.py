@@ -86,9 +86,7 @@ def fetch_block_data(height: int) -> Optional[Dict]:
         else:
             lambda_rate = 1.0 / 600.0
 
-        I = compute_expansion_rate(
-            subsidy, supply, lambda_rate
-        )  # noqa: E741 - expansion rate (standard notation)
+        I = compute_expansion_rate(subsidy, supply, lambda_rate)  # noqa: E741
 
         return {
             "h": height,
