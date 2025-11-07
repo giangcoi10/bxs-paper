@@ -100,22 +100,20 @@ def latest():
         ).fetchone()
 
         if not wallet or not blocks or not metrics:
-            raise HTTPException(
-                status_code=404, detail="No metrics available"
-            )
+            raise HTTPException(status_code=404, detail="No metrics available")
 
         # Map DB columns to expected API keys
         result = {
             "f": float(wallet["f"]) if wallet["f"] is not None else None,
             "S": float(blocks["S"]) if blocks["S"] is not None else None,
-            "BXS": float(metrics["BXS_cum"]) if metrics["BXS_cum"] is not None else None,
+            "BXS": (
+                float(metrics["BXS_cum"]) if metrics["BXS_cum"] is not None else None
+            ),
         }
 
         return result
     except sqlite3.OperationalError as e:
-        raise HTTPException(
-            status_code=500, detail=f"Database error: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     finally:
         conn.close()
 
@@ -291,7 +289,7 @@ def update_metrics_table(
 def root():
     """
     Return API information with available endpoints.
-    
+
     Always returns JSON (tests expect "endpoints" key).
     """
     return {
